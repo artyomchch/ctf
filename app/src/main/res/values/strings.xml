@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ctf</string>
+    <string name="сurrencies">Currencies</string>
+    <string name="dollar">$</string>
+    <string name="euro">€</string>
+    <string name="cny">¥</string>
+    <string name="reload">reload</string>
+</resources>
