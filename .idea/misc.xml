@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/ctf/app/src/main/res/drawable/ic_arrow_forward_24.xml" value="0.2535" />
         <entry key="..\:/Users/User/AndroidStudioProjects/ctf/app/src/main/res/drawable/ic_update.xml" value="0.1185" />
         <entry key="..\:/Users/User/AndroidStudioProjects/ctf/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/ctf/app/src/main/res/layout/value_item.xml" value="0.33" />
         <entry key="..\:/Users/User/AndroidStudioProjects/ctf/app/src/main/res/menu/action_buttons.xml" value="0.36666666666666664" />
       </map>
     </option>

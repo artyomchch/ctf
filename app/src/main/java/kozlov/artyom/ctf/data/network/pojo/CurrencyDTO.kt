@@ -5,5 +5,5 @@ data class CurrencyDTO(
     val PreviousDate: String,
     val PreviousURL: String,
     val Timestamp: String,
-    val Valute: ValuteDTO
+    val Valute: Valute
 )

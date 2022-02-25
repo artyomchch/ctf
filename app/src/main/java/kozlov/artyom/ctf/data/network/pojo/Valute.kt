@@ -1,6 +1,6 @@
 package kozlov.artyom.ctf.data.network.pojo
 
-data class ValuteDTO(
+data class Valute(
     val AMD: AMD,
     val AUD: AUD,
     val AZN: AZN,
