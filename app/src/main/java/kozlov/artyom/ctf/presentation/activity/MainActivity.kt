@@ -35,7 +35,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun setDataValueList() {
         viewModel.valueItems.observe(this) {
-            valueItemAdapter.submitList(it)
+
+            valueItemAdapter.submitList(it.first)
+            valueItemAdapter.data = it.second
         }
     }
 
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         valueItemAdapter = ValueItemAdapter()
         binding.listRecyclerView.adapter = valueItemAdapter
     }
+
 
 
 }

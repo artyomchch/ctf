@@ -2,6 +2,9 @@ package kozlov.artyom.ctf.data.mapper
 
 import kozlov.artyom.ctf.data.network.pojo.CurrencyDTO
 import kozlov.artyom.ctf.domain.entity.ValueItem
+import java.math.RoundingMode
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 class ValueListMapper @Inject constructor() {
@@ -12,8 +15,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.AMD.CharCode,
             name = currency.Valute.AMD.Name,
             nominal = currency.Valute.AMD.Nominal,
-            value = currency.Valute.AMD.Value,
-            percent = currency.Valute.AMD.Previous
+            value = convertNumber(currency.Valute.AMD.Value),
+            percent = convertNumber(currency.Valute.AMD.Value, currency.Valute.AMD.Previous)
         )
 
 
@@ -23,8 +26,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.AUD.CharCode,
             name = currency.Valute.AUD.Name,
             nominal = currency.Valute.AUD.Nominal,
-            value = currency.Valute.AUD.Value,
-            percent = currency.Valute.AUD.Previous
+            value = convertNumber(currency.Valute.AUD.Value),
+            percent = convertNumber(currency.Valute.AUD.Value, currency.Valute.AUD.Previous)
         )
 
 
@@ -34,8 +37,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.AZN.CharCode,
             name = currency.Valute.AZN.Name,
             nominal = currency.Valute.AZN.Nominal,
-            value = currency.Valute.AZN.Value,
-            percent = currency.Valute.AZN.Previous
+            value = convertNumber(currency.Valute.AZN.Value),
+            percent = convertNumber(currency.Valute.AZN.Value, currency.Valute.AZN.Previous)
         )
 
 
@@ -45,8 +48,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.BGN.CharCode,
             name = currency.Valute.BGN.Name,
             nominal = currency.Valute.BGN.Nominal,
-            value = currency.Valute.BGN.Value,
-            percent = currency.Valute.BGN.Previous
+            value = convertNumber(currency.Valute.BGN.Value),
+            percent = convertNumber(currency.Valute.BGN.Value, currency.Valute.BGN.Previous)
         )
 
 
@@ -56,8 +59,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.BRL.CharCode,
             name = currency.Valute.BRL.Name,
             nominal = currency.Valute.BRL.Nominal,
-            value = currency.Valute.BRL.Value,
-            percent = currency.Valute.BRL.Previous
+            value = convertNumber(currency.Valute.BRL.Value),
+            percent = convertNumber(currency.Valute.BRL.Value, currency.Valute.BRL.Previous)
         )
 
 
@@ -67,8 +70,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.BYN.CharCode,
             name = currency.Valute.BYN.Name,
             nominal = currency.Valute.BYN.Nominal,
-            value = currency.Valute.BYN.Value,
-            percent = currency.Valute.BYN.Previous
+            value = convertNumber(currency.Valute.BYN.Value),
+            percent = convertNumber(currency.Valute.BYN.Value, currency.Valute.BYN.Previous)
         )
 
 
@@ -78,8 +81,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.CAD.CharCode,
             name = currency.Valute.CAD.Name,
             nominal = currency.Valute.CAD.Nominal,
-            value = currency.Valute.CAD.Value,
-            percent = currency.Valute.CAD.Previous
+            value = convertNumber(currency.Valute.CAD.Value),
+            percent = convertNumber(currency.Valute.CAD.Value, currency.Valute.CAD.Previous)
         )
 
 
@@ -89,8 +92,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.CHF.CharCode,
             name = currency.Valute.CHF.Name,
             nominal = currency.Valute.CHF.Nominal,
-            value = currency.Valute.CHF.Value,
-            percent = currency.Valute.CHF.Previous
+            value = convertNumber(currency.Valute.CHF.Value),
+            percent = convertNumber(currency.Valute.CHF.Value, currency.Valute.CHF.Previous)
         )
 
 
@@ -100,8 +103,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.CNY.CharCode,
             name = currency.Valute.CNY.Name,
             nominal = currency.Valute.CNY.Nominal,
-            value = currency.Valute.CNY.Value,
-            percent = currency.Valute.CNY.Previous
+            value = convertNumber(currency.Valute.CNY.Value),
+            percent = convertNumber(currency.Valute.CNY.Value, currency.Valute.CNY.Previous)
         )
 
 
@@ -111,8 +114,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.CZK.CharCode,
             name = currency.Valute.CZK.Name,
             nominal = currency.Valute.CZK.Nominal,
-            value = currency.Valute.CZK.Value,
-            percent = currency.Valute.CZK.Previous
+            value = convertNumber(currency.Valute.CZK.Value),
+            percent = convertNumber(currency.Valute.CZK.Value, currency.Valute.CZK.Previous)
         )
 
 
@@ -122,8 +125,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.DKK.CharCode,
             name = currency.Valute.DKK.Name,
             nominal = currency.Valute.DKK.Nominal,
-            value = currency.Valute.DKK.Value,
-            percent = currency.Valute.DKK.Previous
+            value = convertNumber(currency.Valute.DKK.Value),
+            percent = convertNumber(currency.Valute.DKK.Value, currency.Valute.DKK.Previous)
         )
 
 
@@ -133,8 +136,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.EUR.CharCode,
             name = currency.Valute.EUR.Name,
             nominal = currency.Valute.EUR.Nominal,
-            value = currency.Valute.EUR.Value,
-            percent = currency.Valute.EUR.Previous
+            value = convertNumber(currency.Valute.EUR.Value),
+            percent = convertNumber(currency.Valute.EUR.Value, currency.Valute.EUR.Previous)
         )
 
 
@@ -144,8 +147,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.GBP.CharCode,
             name = currency.Valute.GBP.Name,
             nominal = currency.Valute.GBP.Nominal,
-            value = currency.Valute.GBP.Value,
-            percent = currency.Valute.GBP.Previous
+            value = convertNumber(currency.Valute.GBP.Value),
+            percent = convertNumber(currency.Valute.GBP.Value, currency.Valute.GBP.Previous)
         )
 
 
@@ -155,8 +158,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.HKD.CharCode,
             name = currency.Valute.HKD.Name,
             nominal = currency.Valute.HKD.Nominal,
-            value = currency.Valute.HKD.Value,
-            percent = currency.Valute.HKD.Previous
+            value = convertNumber(currency.Valute.HKD.Value),
+            percent = convertNumber(currency.Valute.HKD.Value, currency.Valute.HKD.Previous)
         )
 
 
@@ -166,8 +169,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.HUF.CharCode,
             name = currency.Valute.HUF.Name,
             nominal = currency.Valute.HUF.Nominal,
-            value = currency.Valute.HUF.Value,
-            percent = currency.Valute.HUF.Previous
+            value = convertNumber(currency.Valute.HUF.Value),
+            percent = convertNumber(currency.Valute.HUF.Value, currency.Valute.HUF.Previous)
         )
 
 
@@ -177,8 +180,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.INR.CharCode,
             name = currency.Valute.INR.Name,
             nominal = currency.Valute.INR.Nominal,
-            value = currency.Valute.INR.Value,
-            percent = currency.Valute.INR.Previous
+            value = convertNumber(currency.Valute.INR.Value),
+            percent = convertNumber(currency.Valute.INR.Value, currency.Valute.INR.Previous)
         )
 
 
@@ -188,8 +191,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.JPY.CharCode,
             name = currency.Valute.JPY.Name,
             nominal = currency.Valute.JPY.Nominal,
-            value = currency.Valute.JPY.Value,
-            percent = currency.Valute.JPY.Previous
+            value = convertNumber(currency.Valute.JPY.Value),
+            percent = convertNumber(currency.Valute.JPY.Value, currency.Valute.JPY.Previous)
         )
 
 
@@ -199,8 +202,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.KGS.CharCode,
             name = currency.Valute.KGS.Name,
             nominal = currency.Valute.KGS.Nominal,
-            value = currency.Valute.KGS.Value,
-            percent = currency.Valute.KGS.Previous
+            value = convertNumber(currency.Valute.KGS.Value),
+            percent = convertNumber(currency.Valute.KGS.Value, currency.Valute.KGS.Previous)
         )
 
 
@@ -210,8 +213,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.KRW.CharCode,
             name = currency.Valute.KRW.Name,
             nominal = currency.Valute.KRW.Nominal,
-            value = currency.Valute.KRW.Value,
-            percent = currency.Valute.KRW.Previous
+            value = convertNumber(currency.Valute.KRW.Value),
+            percent = convertNumber(currency.Valute.KRW.Value, currency.Valute.KRW.Previous)
         )
 
 
@@ -221,8 +224,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.KZT.CharCode,
             name = currency.Valute.KZT.Name,
             nominal = currency.Valute.KZT.Nominal,
-            value = currency.Valute.KZT.Value,
-            percent = currency.Valute.KZT.Previous
+            value = convertNumber(currency.Valute.KZT.Value),
+            percent = convertNumber(currency.Valute.KZT.Value, currency.Valute.KZT.Previous)
         )
 
 
@@ -232,8 +235,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.MDL.CharCode,
             name = currency.Valute.MDL.Name,
             nominal = currency.Valute.MDL.Nominal,
-            value = currency.Valute.MDL.Value,
-            percent = currency.Valute.MDL.Previous
+            value = convertNumber(currency.Valute.MDL.Value),
+            percent = convertNumber(currency.Valute.MDL.Value, currency.Valute.MDL.Previous)
         )
 
 
@@ -243,8 +246,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.NOK.CharCode,
             name = currency.Valute.NOK.Name,
             nominal = currency.Valute.NOK.Nominal,
-            value = currency.Valute.NOK.Value,
-            percent = currency.Valute.NOK.Previous
+            value = convertNumber(currency.Valute.NOK.Value),
+            percent = convertNumber(currency.Valute.NOK.Value, currency.Valute.NOK.Previous)
         )
 
 
@@ -254,8 +257,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.PLN.CharCode,
             name = currency.Valute.PLN.Name,
             nominal = currency.Valute.PLN.Nominal,
-            value = currency.Valute.PLN.Value,
-            percent = currency.Valute.PLN.Previous
+            value = convertNumber(currency.Valute.PLN.Value),
+            percent = convertNumber(currency.Valute.PLN.Value, currency.Valute.PLN.Previous)
         )
 
 
@@ -265,8 +268,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.RON.CharCode,
             name = currency.Valute.RON.Name,
             nominal = currency.Valute.RON.Nominal,
-            value = currency.Valute.RON.Value,
-            percent = currency.Valute.RON.Previous
+            value = convertNumber(currency.Valute.RON.Value),
+            percent = convertNumber(currency.Valute.RON.Value, currency.Valute.RON.Previous)
         )
 
 
@@ -276,8 +279,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.SEK.CharCode,
             name = currency.Valute.SEK.Name,
             nominal = currency.Valute.SEK.Nominal,
-            value = currency.Valute.SEK.Value,
-            percent = currency.Valute.SEK.Previous
+            value = convertNumber(currency.Valute.SEK.Value),
+            percent = convertNumber(currency.Valute.SEK.Value, currency.Valute.SEK.Previous)
         )
 
 
@@ -287,8 +290,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.SGD.CharCode,
             name = currency.Valute.SGD.Name,
             nominal = currency.Valute.SGD.Nominal,
-            value = currency.Valute.SGD.Value,
-            percent = currency.Valute.SGD.Previous
+            value = convertNumber(currency.Valute.SGD.Value),
+            percent = convertNumber(currency.Valute.SGD.Value, currency.Valute.SGD.Previous)
         )
 
 
@@ -298,8 +301,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.TJS.CharCode,
             name = currency.Valute.TJS.Name,
             nominal = currency.Valute.TJS.Nominal,
-            value = currency.Valute.TJS.Value,
-            percent = currency.Valute.TJS.Previous
+            value = convertNumber(currency.Valute.TJS.Value),
+            percent = convertNumber(currency.Valute.TJS.Value, currency.Valute.TJS.Previous)
         )
 
 
@@ -309,8 +312,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.TMT.CharCode,
             name = currency.Valute.TMT.Name,
             nominal = currency.Valute.TMT.Nominal,
-            value = currency.Valute.TMT.Value,
-            percent = currency.Valute.TMT.Previous
+            value = convertNumber(currency.Valute.TMT.Value),
+            percent = convertNumber(currency.Valute.TMT.Value, currency.Valute.TMT.Previous)
         )
 
 
@@ -320,8 +323,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.TRY.CharCode,
             name = currency.Valute.TRY.Name,
             nominal = currency.Valute.TRY.Nominal,
-            value = currency.Valute.TRY.Value,
-            percent = currency.Valute.TRY.Previous
+            value = convertNumber(currency.Valute.TRY.Value),
+            percent = convertNumber(currency.Valute.TRY.Value, currency.Valute.TRY.Previous)
         )
 
 
@@ -331,8 +334,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.UAH.CharCode,
             name = currency.Valute.UAH.Name,
             nominal = currency.Valute.UAH.Nominal,
-            value = currency.Valute.UAH.Value,
-            percent = currency.Valute.UAH.Previous
+            value = convertNumber(currency.Valute.UAH.Value),
+            percent = convertNumber(currency.Valute.UAH.Value, currency.Valute.UAH.Previous)
         )
 
 
@@ -342,8 +345,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.USD.CharCode,
             name = currency.Valute.USD.Name,
             nominal = currency.Valute.USD.Nominal,
-            value = currency.Valute.USD.Value,
-            percent = currency.Valute.USD.Previous
+            value = convertNumber(currency.Valute.USD.Value),
+            percent = convertNumber(currency.Valute.USD.Value, currency.Valute.USD.Previous)
         )
 
 
@@ -353,8 +356,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.UZS.CharCode,
             name = currency.Valute.UZS.Name,
             nominal = currency.Valute.UZS.Nominal,
-            value = currency.Valute.UZS.Value,
-            percent = currency.Valute.UZS.Previous
+            value = convertNumber(currency.Valute.UZS.Value),
+            percent = convertNumber(currency.Valute.UZS.Value, currency.Valute.UZS.Previous)
         )
 
 
@@ -364,8 +367,8 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.XDR.CharCode,
             name = currency.Valute.XDR.Name,
             nominal = currency.Valute.XDR.Nominal,
-            value = currency.Valute.XDR.Value,
-            percent = currency.Valute.XDR.Previous
+            value = convertNumber(currency.Valute.XDR.Value),
+            percent = convertNumber(currency.Valute.XDR.Value, currency.Valute.XDR.Previous)
         )
 
 
@@ -375,12 +378,12 @@ class ValueListMapper @Inject constructor() {
             currency = currency.Valute.ZAR.CharCode,
             name = currency.Valute.ZAR.Name,
             nominal = currency.Valute.ZAR.Nominal,
-            value = currency.Valute.ZAR.Value,
-            percent = currency.Valute.ZAR.Previous
+            value = convertNumber(currency.Valute.ZAR.Value),
+            percent = convertNumber(currency.Valute.ZAR.Value, currency.Valute.ZAR.Previous)
         )
 
 
-    fun mapListNetworkModelToListEntityNews(dto: CurrencyDTO): List<ValueItem> = listOf(
+    fun mapListNetworkModelToListEntityNews(dto: CurrencyDTO): Pair<List<ValueItem>, String> = listOf(
         mapAMDToEntityValue(dto),
         mapAUDToEntityValue(dto),
         mapAZNToEntityValue(dto),
@@ -415,7 +418,13 @@ class ValueListMapper @Inject constructor() {
         mapUZSToEntityValue(dto),
         mapXDRToEntityValue(dto),
         mapZARToEntityValue(dto)
-    )
+    ) to dto.Timestamp
+
+    private fun convertNumber(d: Double) = roundOfDecimal(d)
+
+    private fun convertNumber(d: Double, percent: Double) = roundOfDecimal(d - percent)
+
+    private fun roundOfDecimal(number: Double) = number.toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
 
 
 }

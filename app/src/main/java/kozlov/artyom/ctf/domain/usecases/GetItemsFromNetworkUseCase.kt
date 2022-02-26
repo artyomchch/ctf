@@ -6,5 +6,5 @@ import javax.inject.Inject
 
 class GetItemsFromNetworkUseCase @Inject constructor (private val valueListRepository: ValueListRepository) {
 
-    suspend operator fun invoke(): List<ValueItem> = valueListRepository.getValuesList()
+    suspend operator fun invoke(): Pair<List<ValueItem>, String> = valueListRepository.getValuesList()
 }

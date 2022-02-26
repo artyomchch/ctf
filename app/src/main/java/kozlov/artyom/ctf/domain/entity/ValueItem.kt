@@ -6,5 +6,6 @@ data class ValueItem(
     val name: String,
     val nominal: Int,
     val value: Double,
-    val percent: Double
+    val percent: Double,
+
 )

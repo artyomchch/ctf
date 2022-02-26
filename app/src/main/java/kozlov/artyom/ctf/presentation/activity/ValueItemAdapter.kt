@@ -4,23 +4,52 @@ package kozlov.artyom.ctf.presentation.activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
+import kozlov.artyom.ctf.databinding.HeaderInfoBinding
 import kozlov.artyom.ctf.databinding.ValueItemBinding
 import kozlov.artyom.ctf.domain.entity.ValueItem
 
-class ValueItemAdapter: ListAdapter<ValueItem, ValueItemViewHolder>(ValueItemDiffCallback()) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ValueItemViewHolder {
-        val binding = ValueItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ValueItemViewHolder(binding)
+class ValueItemAdapter() : ListAdapter<ValueItem, BaseViewHolder<*>>(ValueItemDiffCallback()) {
+
+    var data: String = ""
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
+
+        return when (viewType) {
+            TYPE_HEADER -> {
+                val binding = HeaderInfoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                HeaderItemViewHolder(binding)
+            }
+            TYPE_ITEMS -> {
+                val binding = ValueItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                ValueItemViewHolder(binding)
+            }
+            else -> throw RuntimeException("Unknown view type: $viewType")
+        }
+
     }
 
-    override fun onBindViewHolder(holder: ValueItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
         val valueItem = getItem(position)
-        with(holder.binding){
-            currencyValue.text = valueItem.currency
-            nameValue.text = valueItem.name
-            nominalValue.text = valueItem.nominal.toString()
-            priceValue.text = valueItem.value.toString()
-            ratioPriceValue.text = (valueItem.value - valueItem.percent).toString()
+        when (holder){
+            is HeaderItemViewHolder -> holder.bind(data)
+            is ValueItemViewHolder -> holder.bind(valueItem as ValueItem)
+            else -> throw IllegalArgumentException()
         }
     }
+
+    override fun getItemViewType(position: Int): Int {
+        if (position == 0) {
+            return TYPE_HEADER
+        }
+        return TYPE_ITEMS
+    }
+
+
+    companion object {
+        private const val TYPE_HEADER = 0
+        private const val TYPE_ITEMS = 1
+
+    }
+
+
 }

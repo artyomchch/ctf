@@ -18,7 +18,7 @@ class ValueListRepositoryImpl @Inject constructor(
 ) : ValueListRepository {
 
 
-    override suspend fun getValuesList(): List<ValueItem> {
+    override suspend fun getValuesList(): Pair<List<ValueItem>, String> {
        return mapper.mapListNetworkModelToListEntityNews(retrofit.getPost())
     }
 }

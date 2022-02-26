@@ -4,5 +4,5 @@ import kozlov.artyom.ctf.domain.entity.ValueItem
 
 interface ValueListRepository {
 
-    suspend fun getValuesList(): List<ValueItem>
+    suspend fun getValuesList(): Pair<List<ValueItem>, String>
 }

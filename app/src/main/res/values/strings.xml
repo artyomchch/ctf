@@ -5,14 +5,18 @@
     <string name="euro">€</string>
     <string name="cny">¥</string>
     <string name="reload">reload</string>
-    <string name="currency_name">Валюта:</string>
+    <string name="currency_name">Цифровой код:</string>
+    <string name="test">Фунт стерлингов Соединенного королества</string>
+
     <string name="currency_value">USD</string>
-    <string name="name">Название:</string>
+    <string name="name">Валюта:</string>
     <string name="name_value">Доллар США</string>
-    <string name="nominal_name">Номинал:</string>
+    <string name="nominal_name">Единиц:</string>
     <string name="nominal_value">1</string>
-    <string name="price_name">Цена:</string>
+    <string name="price_name">Курс:</string>
     <string name="price_value">89,62</string>
     <string name="ratio_price_value">(+6,5)</string>
     <string name="forward_right">forward_right</string>
+    <string name="update_server_date">Последнее обновление базы данных:</string>
+    <string name="time_update">25.02.2022, 22:00:00</string>
 </resources>
