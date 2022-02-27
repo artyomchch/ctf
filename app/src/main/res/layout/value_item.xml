@@ -96,11 +96,22 @@
                     android:text="@string/price_value" />
 
                 <TextView
-                    android:id="@+id/ratio_price_value"
+                    android:id="@+id/start"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:text="@string/start"/>
+
+                <TextView
+                    android:id="@+id/ratio_price_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/ratio_price_value" />
+                <TextView
+                    android:id="@+id/finish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/finish"/>
 
             </LinearLayout>
         </LinearLayout>

@@ -1,4 +1,4 @@
-package kozlov.artyom.ctf.presentation.activity
+package kozlov.artyom.ctf.presentation.activity.viewholders
 
 import kozlov.artyom.ctf.databinding.HeaderInfoBinding
 

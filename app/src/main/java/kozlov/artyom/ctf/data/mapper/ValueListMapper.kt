@@ -1,10 +1,13 @@
 package kozlov.artyom.ctf.data.mapper
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import kozlov.artyom.ctf.data.network.pojo.CurrencyDTO
 import kozlov.artyom.ctf.domain.entity.ValueItem
 import java.math.RoundingMode
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 import javax.inject.Inject
 
 class ValueListMapper @Inject constructor() {
@@ -383,6 +386,7 @@ class ValueListMapper @Inject constructor() {
         )
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun mapListNetworkModelToListEntityNews(dto: CurrencyDTO): Pair<List<ValueItem>, String> = listOf(
         mapAMDToEntityValue(dto),
         mapAUDToEntityValue(dto),
@@ -418,13 +422,25 @@ class ValueListMapper @Inject constructor() {
         mapUZSToEntityValue(dto),
         mapXDRToEntityValue(dto),
         mapZARToEntityValue(dto)
-    ) to dto.Timestamp
+    ) to convertTime(dto.Timestamp)
 
     private fun convertNumber(d: Double) = roundOfDecimal(d)
 
     private fun convertNumber(d: Double, percent: Double) = roundOfDecimal(d - percent)
 
     private fun roundOfDecimal(number: Double) = number.toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun convertTime(s: String): String {
+        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
+        val outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH)
+        val date = LocalDateTime.parse(s.dropLast(DROP_GMT_SYMBOLS), inputFormatter)
+        return outputFormatter.format(date)
+    }
+
+    companion object {
+        private const val DROP_GMT_SYMBOLS = 6
+    }
 
 
 }

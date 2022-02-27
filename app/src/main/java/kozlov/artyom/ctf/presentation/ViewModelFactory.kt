@@ -1,4 +1,4 @@
-package kozlov.artyom.ctf.presentation.activity
+package kozlov.artyom.ctf.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

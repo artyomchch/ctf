@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import kozlov.artyom.ctf.databinding.HeaderInfoBinding
 import kozlov.artyom.ctf.databinding.ValueItemBinding
 import kozlov.artyom.ctf.domain.entity.ValueItem
+import kozlov.artyom.ctf.presentation.activity.viewholders.BaseViewHolder
+import kozlov.artyom.ctf.presentation.activity.viewholders.HeaderItemViewHolder
+import kozlov.artyom.ctf.presentation.activity.viewholders.ValueItemViewHolder
 
 class ValueItemAdapter() : ListAdapter<ValueItem, BaseViewHolder<*>>(ValueItemDiffCallback()) {
 
