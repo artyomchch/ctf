@@ -7,14 +7,15 @@ import androidx.recyclerview.widget.ListAdapter
 import kozlov.artyom.ctf.databinding.HeaderInfoBinding
 import kozlov.artyom.ctf.databinding.ValueItemBinding
 import kozlov.artyom.ctf.domain.entity.Info
+import kozlov.artyom.ctf.domain.entity.ListMarker
 import kozlov.artyom.ctf.domain.entity.ValueItem
 import kozlov.artyom.ctf.presentation.activity.viewholders.BaseViewHolder
 import kozlov.artyom.ctf.presentation.activity.viewholders.HeaderItemViewHolder
 import kozlov.artyom.ctf.presentation.activity.viewholders.ValueItemViewHolder
 
-class ValueItemAdapter() : ListAdapter<ValueItem, BaseViewHolder<*>>(ValueItemDiffCallback()) {
+class ValueItemAdapter : ListAdapter<ListMarker, BaseViewHolder<*>>(ValueItemDiffCallback()) {
 
-    var data: String = ""
+//    var data: String = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
 
@@ -35,7 +36,7 @@ class ValueItemAdapter() : ListAdapter<ValueItem, BaseViewHolder<*>>(ValueItemDi
     override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
         val valueItem = getItem(position)
         when (holder){
-            is HeaderItemViewHolder -> holder.bind(data)
+            is HeaderItemViewHolder -> holder.bind(valueItem as Info)
             is ValueItemViewHolder -> holder.bind(valueItem as ValueItem)
             else -> throw IllegalArgumentException()
         }

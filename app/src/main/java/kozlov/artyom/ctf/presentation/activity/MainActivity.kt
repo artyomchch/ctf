@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import kozlov.artyom.ctf.R
 import kozlov.artyom.ctf.databinding.ActivityMainBinding
+import kozlov.artyom.ctf.domain.entity.Info
+import kozlov.artyom.ctf.domain.entity.ListMarker
 import kozlov.artyom.ctf.presentation.ViewModelFactory
 import kozlov.artyom.ctf.utils.App
 import kozlov.artyom.ctf.utils.Resource
@@ -40,8 +42,8 @@ class MainActivity : AppCompatActivity() {
         retryOnClickListener()
         setupButtonMenuToolbar()
 
-        viewModel.getValueList.observe(this){
-            if (it.isNotEmpty()){
+        viewModel.getValueList.observe(this) {
+            if (it.isNotEmpty()) {
                 viewModel.setDatabaseValue(it)
                 Log.d("tagch", "onCreate: $it")
             }
@@ -79,8 +81,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 is Resource.Success -> {
                     status.data?.let {
-                        valueItemAdapter.submitList(it.first)
-                        valueItemAdapter.data = it.second
+                        val list = mutableListOf<ListMarker>()
+                        list.add(Info(it.second))
+                        list.addAll(it.first)
+                        valueItemAdapter.submitList(list)
                         showRecyclerView()
                     }
 
@@ -90,8 +94,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 is Resource.DataBase -> {
                     status.data?.let {
-                        valueItemAdapter.submitList(it.first)
-                        valueItemAdapter.data = it.second
+                        val list = mutableListOf<ListMarker>()
+                        list.add(Info(it.second))
+                        list.addAll(it.first)
+                        valueItemAdapter.submitList(list)
                         showRecyclerView()
                     }
                 }

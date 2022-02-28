@@ -8,4 +8,4 @@ data class ValueItem(
     val value: Double,
     val percent: Double,
 
-)
+): ListMarker
