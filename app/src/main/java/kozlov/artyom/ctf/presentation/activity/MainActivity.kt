@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import kozlov.artyom.ctf.R
 import kozlov.artyom.ctf.databinding.ActivityMainBinding
 import kozlov.artyom.ctf.presentation.ViewModelFactory
 import kozlov.artyom.ctf.utils.App
-import kozlov.artyom.ctf.utils.InternetConnection
 import kozlov.artyom.ctf.utils.Resource
 import javax.inject.Inject
 
@@ -33,9 +33,30 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         component.inject(this)
         setupRecyclerView()
-        checkInternetConnection()
         setDataValueList()
+        retryOnClickListener()
+        setupButtonMenuToolbar()
+    }
 
+    private fun setupButtonMenuToolbar() {
+        binding.toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.update_data -> {
+                    viewModel.getFirstData()
+                    setupInternetConnectionViewDisable()
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+
+    private fun retryOnClickListener() {
+        binding.retry.setOnClickListener {
+            viewModel.getDataFromInternet()
+            setupInternetConnectionViewDisable()
+        }
     }
 
     private fun setDataValueList() {
@@ -49,6 +70,7 @@ class MainActivity : AppCompatActivity() {
                         valueItemAdapter.submitList(it.first)
                         valueItemAdapter.data = it.second
                         showRecyclerView()
+
                     }
 
                 }
@@ -76,25 +98,22 @@ class MainActivity : AppCompatActivity() {
         binding.listRecyclerView.visibility = View.VISIBLE
     }
 
-    private fun checkInternetConnection() {
-        if (!InternetConnection.checkInternet(this)) {
-            viewModel.setStatusNoInternetAndData()
-            viewModel.setInternetConnection(false)
-        } else {
-            viewModel.setInternetConnection(true)
-            viewModel.checkInternet.observe(this){
-                if (it) viewModel.getFirstData()
-            }
-            viewModel.setInternetConnection(false)
-        }
-
-    }
 
     private fun setupInternetConnectionView() {
         binding.noInternetFrame.visibility = View.VISIBLE
-        binding.shimmerLayout.stopShimmer()
-        binding.shimmerLayout.visibility = View.GONE
+        binding.shimmerLayout.apply {
+            stopShimmer()
+            visibility = View.GONE
+        }
     }
 
+    private fun setupInternetConnectionViewDisable() {
+        binding.noInternetFrame.visibility = View.GONE
+        binding.listRecyclerView.visibility = View.GONE
+        binding.shimmerLayout.apply {
+            startShimmer()
+            visibility = View.VISIBLE
+        }
+    }
 
 }
