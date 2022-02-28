@@ -2,6 +2,7 @@ package kozlov.artyom.ctf.data.mapper
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import kozlov.artyom.ctf.data.database.ValueItemsDBModel
 import kozlov.artyom.ctf.data.network.pojo.CurrencyDTO
 import kozlov.artyom.ctf.domain.entity.ValueItem
 import java.math.RoundingMode
@@ -429,6 +430,35 @@ class ValueListMapper @Inject constructor() {
     private fun convertNumber(d: Double, percent: Double) = roundOfDecimal(d - percent)
 
     private fun roundOfDecimal(number: Double) = number.toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
+
+    private fun mapEntityToDbModel(valueItem: ValueItem) = ValueItemsDBModel(
+        id = valueItem.id,
+        currency= valueItem.currency,
+        name = valueItem.name,
+        nominal = valueItem.nominal,
+        value = valueItem.value,
+        percent = valueItem.percent
+    )
+
+
+    fun mapListEntityToListDbModel(list: List<ValueItem>) = list.map {
+        mapEntityToDbModel(it)
+    }
+
+    private fun mapDbModelToEntity(valueItemDbModel: ValueItemsDBModel) = ValueItem(
+        id = valueItemDbModel.id,
+        currency= valueItemDbModel.currency,
+        name = valueItemDbModel.name,
+        nominal = valueItemDbModel.nominal,
+        value = valueItemDbModel.value,
+        percent = valueItemDbModel.percent
+    )
+
+    fun mapListDbModelToListEntity(list: List<ValueItemsDBModel>) = list.map {
+        mapDbModelToEntity(it)
+    }
+
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun convertTime(s: String): String {

@@ -2,6 +2,7 @@ package kozlov.artyom.ctf.presentation.activity
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -28,14 +29,23 @@ class MainActivity : AppCompatActivity() {
         (application as App).component
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         component.inject(this)
+
         setupRecyclerView()
         setDataValueList()
         retryOnClickListener()
         setupButtonMenuToolbar()
+
+        viewModel.getValueList.observe(this){
+            if (it.isNotEmpty()){
+                viewModel.setDatabaseValue(it)
+                Log.d("tagch", "onCreate: $it")
+            }
+        }
     }
 
     private fun setupButtonMenuToolbar() {
@@ -56,11 +66,13 @@ class MainActivity : AppCompatActivity() {
         binding.retry.setOnClickListener {
             viewModel.getDataFromInternet()
             setupInternetConnectionViewDisable()
+
         }
     }
 
     private fun setDataValueList() {
         viewModel.valueItems.observe(this) { status ->
+            status.data?.let { viewModel.setNetValue(it.first) }
             when (status) {
                 is Resource.Loading -> {
                     binding.shimmerLayout.startShimmer()
@@ -70,7 +82,6 @@ class MainActivity : AppCompatActivity() {
                         valueItemAdapter.submitList(it.first)
                         valueItemAdapter.data = it.second
                         showRecyclerView()
-
                     }
 
                 }
@@ -78,7 +89,11 @@ class MainActivity : AppCompatActivity() {
                     setupInternetConnectionView()
                 }
                 is Resource.DataBase -> {
-
+                    status.data?.let {
+                        valueItemAdapter.submitList(it.first)
+                        valueItemAdapter.data = it.second
+                        showRecyclerView()
+                    }
                 }
             }
 

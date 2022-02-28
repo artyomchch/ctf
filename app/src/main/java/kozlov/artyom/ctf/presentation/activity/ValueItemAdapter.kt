@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import kozlov.artyom.ctf.databinding.HeaderInfoBinding
 import kozlov.artyom.ctf.databinding.ValueItemBinding
+import kozlov.artyom.ctf.domain.entity.Info
 import kozlov.artyom.ctf.domain.entity.ValueItem
 import kozlov.artyom.ctf.presentation.activity.viewholders.BaseViewHolder
 import kozlov.artyom.ctf.presentation.activity.viewholders.HeaderItemViewHolder
@@ -46,6 +47,7 @@ class ValueItemAdapter() : ListAdapter<ValueItem, BaseViewHolder<*>>(ValueItemDi
         }
         return TYPE_ITEMS
     }
+
 
 
     companion object {
