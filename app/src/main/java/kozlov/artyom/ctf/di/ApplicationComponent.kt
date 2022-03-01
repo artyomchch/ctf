@@ -4,6 +4,7 @@ import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import kozlov.artyom.ctf.presentation.activity.MainActivity
+import kozlov.artyom.ctf.presentation.fragment.ValuateFragment
 
 @ApplicationScope
 @Component(
@@ -11,7 +12,7 @@ import kozlov.artyom.ctf.presentation.activity.MainActivity
 )
 interface ApplicationComponent {
 
-    fun inject(activity: MainActivity)
+    fun inject(fragment: ValuateFragment)
 
 
     @Component.Factory

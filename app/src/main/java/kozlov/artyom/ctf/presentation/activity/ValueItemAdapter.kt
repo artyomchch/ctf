@@ -15,7 +15,7 @@ import kozlov.artyom.ctf.presentation.activity.viewholders.ValueItemViewHolder
 
 class ValueItemAdapter : ListAdapter<ListMarker, BaseViewHolder<*>>(ValueItemDiffCallback()) {
 
-//    var data: String = ""
+    var onValueItemClickListener: ((ValueItem) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
 
@@ -37,9 +37,16 @@ class ValueItemAdapter : ListAdapter<ListMarker, BaseViewHolder<*>>(ValueItemDif
         val valueItem = getItem(position)
         when (holder){
             is HeaderItemViewHolder -> holder.bind(valueItem as Info)
-            is ValueItemViewHolder -> holder.bind(valueItem as ValueItem)
+            is ValueItemViewHolder -> {
+                holder.bind(valueItem as ValueItem)
+                holder.itemView.setOnClickListener {
+                    onValueItemClickListener?.invoke(valueItem)
+                }
+            }
             else -> throw IllegalArgumentException()
+
         }
+
     }
 
     override fun getItemViewType(position: Int): Int {

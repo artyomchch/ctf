@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".presentation.fragment.ConvertValuateFragment">
 
 
     <ImageButton
+        android:id="@+id/close_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
@@ -62,7 +64,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/unit_valuate"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/LoginTextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -96,14 +98,15 @@
                 android:textSize="16sp" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/name_text_field"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/rate_text_field"
+                style="@style/LoginTextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:hint="@string/convert_valuate_value">
 
                 <com.google.android.material.textfield.TextInputEditText
+
                     android:id="@+id/edit_name_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

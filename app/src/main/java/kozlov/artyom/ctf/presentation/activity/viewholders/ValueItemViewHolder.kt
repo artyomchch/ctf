@@ -14,10 +14,10 @@ class ValueItemViewHolder(private val binding: ValueItemBinding) : BaseViewHolde
         binding.priceValue.text = item.value.toString()
         binding.ratioPriceValue.text = item.percent.toString()
 
-        binding.root.setOnClickListener {
-            Log.d("TAG", "bind: ${item.name}")
-
-        }
+//        binding.root.setOnClickListener {
+//            Log.d("TAG", "bind: ${item.name}")
+//
+//        }
     }
 
 
