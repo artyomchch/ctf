@@ -1,6 +1,5 @@
 package kozlov.artyom.ctf.presentation.activity
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -52,8 +51,7 @@ class MainActivityViewModel @Inject constructor(
                 if (dataBaseValue.isNullOrEmpty()) {
                     _valueItems.value = Resource.Error()
                 } else {
-                    _valueItems.value = Resource.DataBase(Pair(dataBaseValue, "Данные были взяты с БД"))
-                    Log.d("tagch", "getDataFromInternet: ")
+                    _valueItems.value = Resource.DataBase(Pair(dataBaseValue, "Данные были взяты с локальной БД"))
                 }
 
 

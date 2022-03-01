@@ -21,6 +21,17 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container_view"
+        android:name="kozlov.artyom.ctf.presentation.fragment.ConvertValuateFragment"
+        tools:layout= "@layout/fragment_convert_valute"
+        android:layout_gravity="center"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </androidx.fragment.app.FragmentContainerView>
+
     <LinearLayout
         android:id="@+id/no_internet_frame"
         android:layout_width="wrap_content"

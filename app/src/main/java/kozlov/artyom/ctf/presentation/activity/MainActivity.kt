@@ -10,8 +10,10 @@ import kozlov.artyom.ctf.R
 import kozlov.artyom.ctf.databinding.ActivityMainBinding
 import kozlov.artyom.ctf.domain.entity.Info
 import kozlov.artyom.ctf.domain.entity.ListMarker
+import kozlov.artyom.ctf.domain.entity.ValueItem
 import kozlov.artyom.ctf.presentation.ViewModelFactory
 import kozlov.artyom.ctf.utils.App
+import kozlov.artyom.ctf.utils.Extensions
 import kozlov.artyom.ctf.utils.Resource
 import javax.inject.Inject
 
@@ -81,10 +83,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 is Resource.Success -> {
                     status.data?.let {
-                        val list = mutableListOf<ListMarker>()
-                        list.add(Info(it.second))
-                        list.addAll(it.first)
-                        valueItemAdapter.submitList(list)
+                        val listNetwork = mutableListOf<ListMarker>()
+                        valueItemAdapter.submitList(listNetwork.convertToRecycler(it.first, Info(it.second) ))
                         showRecyclerView()
                     }
 
@@ -94,10 +94,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 is Resource.DataBase -> {
                     status.data?.let {
-                        val list = mutableListOf<ListMarker>()
-                        list.add(Info(it.second))
-                        list.addAll(it.first)
-                        valueItemAdapter.submitList(list)
+                        val listDatabase = mutableListOf<ListMarker>()
+                        valueItemAdapter.submitList(listDatabase.convertToRecycler(it.first, Info(it.second) ))
                         showRecyclerView()
                     }
                 }
@@ -135,6 +133,12 @@ class MainActivity : AppCompatActivity() {
             startShimmer()
             visibility = View.VISIBLE
         }
+    }
+
+    private fun MutableList<ListMarker>.convertToRecycler(list: List<ValueItem>, info: Info): List<ListMarker>{
+        this.add(info)
+        this.addAll(list)
+        return this
     }
 
 }

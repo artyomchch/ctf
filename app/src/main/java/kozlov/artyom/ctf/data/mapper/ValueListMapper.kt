@@ -8,7 +8,6 @@ import kozlov.artyom.ctf.domain.entity.ValueItem
 import java.math.RoundingMode
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 import javax.inject.Inject
 
 class ValueListMapper @Inject constructor() {
@@ -389,6 +388,9 @@ class ValueListMapper @Inject constructor() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun mapListNetworkModelToListEntityNews(dto: CurrencyDTO): Pair<List<ValueItem>, String> = listOf(
+        mapEURToEntityValue(dto),
+        mapUSDToEntityValue(dto),
+        mapUAHToEntityValue(dto),
         mapAMDToEntityValue(dto),
         mapAUDToEntityValue(dto),
         mapAZNToEntityValue(dto),
@@ -400,7 +402,6 @@ class ValueListMapper @Inject constructor() {
         mapCNYToEntityValue(dto),
         mapCZKToEntityValue(dto),
         mapDKKToEntityValue(dto),
-        mapEURToEntityValue(dto),
         mapGBPToEntityValue(dto),
         mapHKDToEntityValue(dto),
         mapHUFToEntityValue(dto),
@@ -418,8 +419,6 @@ class ValueListMapper @Inject constructor() {
         mapTJSToEntityValue(dto),
         mapTMTToEntityValue(dto),
         mapTRYToEntityValue(dto),
-        mapUAHToEntityValue(dto),
-        mapUSDToEntityValue(dto),
         mapUZSToEntityValue(dto),
         mapXDRToEntityValue(dto),
         mapZARToEntityValue(dto)
@@ -433,7 +432,7 @@ class ValueListMapper @Inject constructor() {
 
     private fun mapEntityToDbModel(valueItem: ValueItem) = ValueItemsDBModel(
         id = valueItem.id,
-        currency= valueItem.currency,
+        currency = valueItem.currency,
         name = valueItem.name,
         nominal = valueItem.nominal,
         value = valueItem.value,
@@ -447,7 +446,7 @@ class ValueListMapper @Inject constructor() {
 
     private fun mapDbModelToEntity(valueItemDbModel: ValueItemsDBModel) = ValueItem(
         id = valueItemDbModel.id,
-        currency= valueItemDbModel.currency,
+        currency = valueItemDbModel.currency,
         name = valueItemDbModel.name,
         nominal = valueItemDbModel.nominal,
         value = valueItemDbModel.value,
@@ -459,11 +458,10 @@ class ValueListMapper @Inject constructor() {
     }
 
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     private fun convertTime(s: String): String {
-        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
-        val outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH)
+        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
+        val outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
         val date = LocalDateTime.parse(s.dropLast(DROP_GMT_SYMBOLS), inputFormatter)
         return outputFormatter.format(date)
     }
