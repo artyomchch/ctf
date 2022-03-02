@@ -18,6 +18,7 @@
     <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/shimmerColor</item>
         <item name="hintTextColor">@color/black</item>
+        <item name="android:inputType">numberDecimal</item>
 
     </style>
 </resources>
