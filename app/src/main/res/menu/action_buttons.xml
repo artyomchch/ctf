@@ -9,18 +9,5 @@
         app:showAsAction="ifRoom" />
 
     <!-- Settings, should always be in the overflow -->
-    <item
-        android:id="@+id/dollar"
-        android:title="@string/dollar"
-        app:showAsAction="never" />
 
-    <item
-        android:id="@+id/euro"
-        android:title="@string/euro"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/cny"
-        android:title="@string/cny"
-        app:showAsAction="never" />
 </menu>

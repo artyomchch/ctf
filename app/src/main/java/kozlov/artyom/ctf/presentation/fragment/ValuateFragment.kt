@@ -2,7 +2,6 @@ package kozlov.artyom.ctf.presentation.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -68,7 +67,6 @@ class ValuateFragment : Fragment() {
     private fun setupClickListener() {
 
         valueItemAdapter.onValueItemClickListener = {
-            Log.d("args", "${(activity as MainActivity).isOnePaneMode()}")
             if ((activity as MainActivity).isOnePaneMode()) {
                 launchFragment(ConvertValuateFragment.newInstanceConvertValue(it.name, it.nominal.toDouble(), it.value), R.id.container_view)
             } else launchFragment(ConvertValuateFragment.newInstanceConvertValue(it.name, it.nominal.toDouble(), it.value), R.id.container_convert_valuate)
@@ -121,6 +119,7 @@ class ValuateFragment : Fragment() {
                         showRecyclerView()
                     }
 
+
                 }
                 is Resource.Error -> {
                     setupInternetConnectionView()
@@ -147,6 +146,7 @@ class ValuateFragment : Fragment() {
             stopShimmer()
             visibility = View.GONE
         }
+        binding.noInternetFrame.visibility = View.GONE
         binding.listRecyclerView.visibility = View.VISIBLE
     }
 

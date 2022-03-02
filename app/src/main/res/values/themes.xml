@@ -19,6 +19,9 @@
         <item name="boxStrokeColor">@color/shimmerColor</item>
         <item name="hintTextColor">@color/black</item>
         <item name="android:inputType">numberDecimal</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:textColor">@color/black</item>
+
 
     </style>
 </resources>

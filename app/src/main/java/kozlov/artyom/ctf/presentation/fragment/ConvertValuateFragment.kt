@@ -3,7 +3,6 @@ package kozlov.artyom.ctf.presentation.fragment
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
@@ -11,7 +10,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kozlov.artyom.ctf.databinding.FragmentConvertValuteBinding
 import java.math.RoundingMode
-import kotlin.math.expm1
 
 
 class ConvertValuateFragment : Fragment() {
@@ -42,63 +40,49 @@ class ConvertValuateFragment : Fragment() {
 
         closeFragment()
         initView()
+        focusListeners()
         unitListener()
         rateListener()
 
         return binding.root
     }
 
+    private fun focusListeners() {
+        binding.editUnitValuate.onFocusChangeListener = OnFocusChangeListener { _, b -> et1Focus = b }
+        binding.editRateField.onFocusChangeListener = OnFocusChangeListener { _, b -> et2Focus = b }
+    }
+
     private fun rateListener() {
         binding.editUnitValuate.addTextChangedListener(object : TextWatcher {
-            var isOnTextChanged = false
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-
-
-
+                if (et1Focus) binding.editRateField.setText(convert(s.toString(), rate, units))
             }
 
             override fun afterTextChanged(s: Editable?) {
-
-                if (et1Focus) binding.editRateField.setText(convert(s.toString(), rate, units))
             }
         })
-
-        binding.editUnitValuate.onFocusChangeListener = OnFocusChangeListener { _, b -> et1Focus = b }
-
 
     }
 
     private fun unitListener() {
         binding.editRateField.addTextChangedListener(object : TextWatcher {
-            //  var checker = false
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                Log.d("focus2", "beforeTextChanged  $et2Focus ")
-                Log.d("focus1", "beforeTextChanged: $et1Focus ")
-            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                Log.d("focus2", "focus2 $et2Focus ")
-                Log.d("focus1", "onTextChanged: $et1Focus ")
+                if (et2Focus) binding.editUnitValuate.setText(convert(s.toString(), units, rate))
             }
 
-            override fun afterTextChanged(s: Editable?) {
-                if (et2Focus ) binding.editRateField.setText(convert(s.toString(), units, rate))
-                Log.d("focus2", "afterTextChanged: $et2Focus ")
-                Log.d("focus1", "afterTextChanged: $et1Focus ")
-            }
+            override fun afterTextChanged(s: Editable?) {}
         })
-        binding.editRateField.onFocusChangeListener = OnFocusChangeListener { _, b -> et2Focus = b }
+
     }
 
     val convert: (String, Double, Double) -> String =
         { a, b, c -> ((a.toDoubleOrNull()?.times(b))?.div(c))?.toBigDecimal()?.setScale(2, RoundingMode.UP).toString() }
-//
 
 
     private fun closeFragment() {

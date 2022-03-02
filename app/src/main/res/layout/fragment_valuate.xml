@@ -21,15 +21,18 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
     <LinearLayout
         android:id="@+id/no_internet_frame"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:visibility="gone"
+        android:layout_gravity="center"
         android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:visibility="gone">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+        </View>
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationView"
